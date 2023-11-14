@@ -9,7 +9,7 @@
         <p class="btn btn-primary my-3">Data Satuan Barang</p>
         <div class="card-body">
 
-            <a href="/satuan/create" class="mb-4 btn btn-outline-primary">Tambah Jenis Barang</a>
+            <a href="/satuan/create" class="mb-4 btn btn-outline-primary">Tambah Satuan Barang</a>
 
             <?php
             if (session()->getFlashdata('pesan')) {

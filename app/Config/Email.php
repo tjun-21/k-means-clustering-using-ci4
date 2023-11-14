@@ -6,8 +6,11 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = '';
-    public string $fromName   = '';
+
+    // variabel untuk menggunakan library myth/auth untuk reset password 
+    public string $fromEmail  = 'tajunnur46@gmail.com';
+    public string $fromName   = 'Tajun Nur';
+    //end
     public string $recipients = '';
 
     /**

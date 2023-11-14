@@ -4,26 +4,26 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SatuanModel extends Model
+class CentroidModel extends Model
 
 {
-    protected $table = 'tb_satuan';
-    protected $primaryKey = 'satuan_id';
+    protected $table = 'tb_centroid';
+    protected $primaryKey = 'centroid_id';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $dateFormat    = 'datetime';
     protected $allowedFields = [
-        'satuan_id',
+        'centroid_id',
         'satuan_nama',
-        'satuan_baca'
+        'barang_id'
     ];
 
-    public function getSatuan($data = false)
+    public function getData($data = false)
     {
         if ($data == false) {
             return $this->findAll();
         }
 
-        return $this->where(['satuan_id' => $data])->first();
+        return $this->where(['centroid_id' => $data])->first();
     }
 }

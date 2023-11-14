@@ -6,10 +6,11 @@
 <?= $this->section('content') ?>
 <div class="container-fluid">
     <div class="card">
-        <p class="btn btn-primary my-3">Data Alumni</p>
+        <p class="btn btn-primary my-3">Data Penjualan Barang</p>
         <div class="card-body">
 
-            <a href="/alumni/create" class="mb-4 btn btn-outline-primary">Tambah Data Alumni</a>
+            <a href="/penjualan/create" class="mb-4 btn btn-outline-primary">Tambah Data Penjualan</a>
+            <a href="/penjualan/clustering" class="mb-4 btn btn-outline-primary mx-3">Clustering dengan K-Means</a>
 
             <?php
             if (session()->getFlashdata('pesan')) {
@@ -19,52 +20,64 @@
                 </div>
             <?php   } ?>
 
-            <table id="example" class="table table-striped" style="width:100%" border="2">
+            <table id="example" class="table bordered" style="width:100%" border="2">
                 <thead class="text-primary">
                     <tr>
                         <th rowspan="2">#</th>
                         <th rowspan="2">Nama Barang</th>
-                        <th colspan="3" align="middle">2019 </th>
-                        <th colspan="3">2020 </th>
-                        <th colspan="3">2021 </th>
+                        <!-- <th rowspan="2">Jenis Barang</th> -->
+                        <th rowspan="2">Satuan Barang</th>
+                        <th colspan="2">April </th>
+                        <th colspan="2">Mei </th>
+                        <th colspan="2">Juni </th>
+                        <th colspan="2">Juli </th>
+                        <th colspan="2">Agustus</th>
+                        <th colspan="2">September </th>
                         <th rowspan="2" width="10%">Aksi</th>
                     </tr>
                     <tr>
                         <th>Stok</th>
                         <th>Terjual</th>
-                        <th>Harga</th>
                         <th>Stok</th>
                         <th>Terjual</th>
-                        <th>Harga</th>
                         <th>Stok</th>
                         <th>Terjual</th>
-                        <th>Harga</th>
+                        <th>Stok</th>
+                        <th>Terjual</th>
+                        <th>Stok</th>
+                        <th>Terjual</th>
+                        <th>Stok</th>
+                        <th>Terjual</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($alumni as $a) { ?>
+                    foreach ($penjualan as $a) { ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $a['nama_barang'] ?></td>
-                            <td><?= $a['stok19'] ?></td>
-                            <td><?= $a['terjual19'] ?></td>
-                            <td><?= $a['harga19'] ?></td>
-                            <td><?= $a['stok20'] ?></td>
-                            <td><?= $a['terjual20'] ?></td>
-                            <td><?= $a['harga20'] ?></td>
-                            <td><?= $a['stok21'] ?></td>
-                            <td><?= $a['terjual21'] ?></td>
-                            <td><?= $a['harga21'] ?></td>
+                            <td><?= $a['barang_nama'] ?></td>
+                            <!-- <td><?= $a['jenis_nama'] ?></td> -->
+                            <td><?= $a['satuan_nama'] ?></td>
+                            <td><?= $a['barang_stokApril'] ?></td>
+                            <td><?= $a['barang_terjualApril'] ?></td>
+                            <td><?= $a['barang_stokMei'] ?></td>
+                            <td><?= $a['barang_terjualMei'] ?></td>
+                            <td><?= $a['barang_stokJuni'] ?></td>
+                            <td><?= $a['barang_terjualJuni'] ?></td>
+                            <td><?= $a['barang_stokJuli'] ?></td>
+                            <td><?= $a['barang_terjualJuli'] ?></td>
+                            <td><?= $a['barang_stokAgus'] ?></td>
+                            <td><?= $a['barang_terjualAgus'] ?></td>
+                            <td><?= $a['barang_stokSept'] ?></td>
+                            <td><?= $a['barang_terjualSept'] ?></td>
                             <td>
-                                <a href="/penjualan/<?= $a['penjualan_id'] ?>" class="ti ti-article"></a> |
-                                <a href="/penjualan/edit/<?= $a['penjualan_id'] ?>" class="ti ti-pencil"></a> |
+                                <a href="/penjualan/edit/<?= $a['barang_id'] ?>" class="ti ti-pencil"></a> |
 
-                                <form action="/penjualan/hapus/<?= $a['penjualan_id'] ?>" method="post" class="d-inline">
+                                <form action="/penjualan/hapus/<?= $a['barang_id'] ?>" method="post" class="d-inline">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="ti ti-trash text-primary border-none" style="border: none; background: none;" onclick="return confirm('apakah anda yakin ingin menghapus data alumni dengan nama <?= $a['nama_barang'] ?> ?')"></button>
+                                    <button type="submit" class="ti ti-trash text-primary border-none" style="border: none; background: none;" onclick="return confirm('apakah anda yakin ingin menghapus data penjualan barang dengan nama <?= $a['barang_nama'] ?> ?')"></button>
                                 </form>
 
                             </td>

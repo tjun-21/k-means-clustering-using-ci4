@@ -3,162 +3,215 @@
 <?= $this->section('content') ?>
 <div class="container-fluid">
     <div class="card">
-        <!-- <a href="/alumni" class="btn btn-primary my-3">Kembali ke data alumni</a> -->
-        <p class="btn btn-primary my-3">Form Ubah Data Alumni</p>
+        <!-- <a href="/barang" class="btn btn-primary my-3">Kembali ke data barang</a> -->
+        <p class="btn btn-primary my-3">Form Ubah Data Penjualan</p>
         <div class="card-body">
-            <a href="/alumni" class="mb-4 btn btn-outline-primary">Kembali</a>
-            <form action="/alumni/update/<?= $alumni['alumni_id'] ?>" method="post">
+            <a href="/penjualan" class="mb-4 btn btn-outline-primary">Kembali</a>
+            <form action="/penjualan/update/<?= $penjualan['barang_id'] ?>" method="post">
                 <?= csrf_field() ?>
 
                 <div class="row">
-                    <div class="col-lg-5">
+                    <div class="col-lg-9">
 
                         <div class="box box-primary">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label class="form-label" for="nisn">NISN</label>
-                                    <input type="number" class="form-control <?= ($validation->hasError('nisn')) ? 'is-invalid' : ''; ?>" name="nisn" id="nisn" autofocus value="<?= $alumni['alumni_nisn'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nisn') ?>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="form-label" for="nisn">Nama</label>
+                                        <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" name="nama" id="nama" autofocus value="<?= $penjualan['barang_nama'] ?>" placeholder="masukkan nama barang">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('nama') ?>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="alamat">Alamat</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" id="alamat" placeholder="Misal : Nama Jalan, Bangunan, Dll" value="<?= $alumni['alumni_alamat'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('alamat') ?>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok April</label>
+                                                <input type="number" class="form-control <?= ($validation->hasError('stokApril')) ? 'is-invalid' : ''; ?>" name="stokApril" id="stok19" placeholder="Masukkan Stock April..." value="<?= $penjualan['barang_stokApril'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokApril') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual April</label>
+                                                <input type="number" name="terjualApril" class="form-control <?= ($validation->hasError('terjualApril')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah terjual April..." value="<?= $penjualan['barang_terjualApril'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualApril') ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="provinsi">Provinsi</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('provinsi')) ? 'is-invalid' : ''; ?>" name="provinsi" id="provinsi" value="<?= $alumni['alumni_prov'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('provinsi') ?>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6 ">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok Mei</label>
+                                                <input type="number" name="stokMei" class="form-control <?= ($validation->hasError('stokMei')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Stok Mei..." value="<?= $penjualan['barang_stokMei'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokMei') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual Mei</label>
+                                                <input type="number" name="terjualMei" class="form-control <?= ($validation->hasError('terjualMei')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Terjual Mei..." value="<?= $penjualan['barang_terjualMei'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualMei') ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="kecamatan">Kecamatan</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('kecamatan')) ? 'is-invalid' : ''; ?>" name="kecamatan" id="kecamatan" value="<?= $alumni['alumni_kec'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('kecamatan') ?>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok Juni</label>
+                                                <input type="number" name="stokJuni" class="form-control <?= ($validation->hasError('stokJuni')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Stok  juni..." value="<?= $penjualan['barang_stokJuni'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokJuni') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual Juni</label>
+                                                <input type="number" name="terjualJuni" class="form-control <?= ($validation->hasError('terjualJuni')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Terjual Juni..." value="<?= $penjualan['barang_terjualJuni'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualJuni') ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="desa">Desa</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('desa')) ? 'is-invalid' : ''; ?>" name="desa" id="desa" value="<?= $alumni['alumni_desa'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('desa') ?>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok Juli</label>
+                                                <input type="number" name="stokJuli" class="form-control <?= ($validation->hasError('stokJuli')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Stok  Juli..." value="<?= $penjualan['barang_stokJuli'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokJuli') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual Juli</label>
+                                                <input type="number" name="terjualJuli" class="form-control <?= ($validation->hasError('terjualJuli')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Terjual Juli..." value="<?= $penjualan['barang_terjualJuli'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualJuli') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok Agustus</label>
+                                                <input type="number" name="stokAgus" class="form-control <?= ($validation->hasError('stokAgus')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Stok  Agustus..." value="<?= $penjualan['barang_stokAgus'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokAgus') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual Agustus</label>
+                                                <input type="number" name="terjualAgus" class="form-control <?= ($validation->hasError('terjualAgus')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Terjual Agustus..." value="<?= $penjualan['barang_terjualAgus'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualAgus') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 text-primary">
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Stok September</label>
+                                                <input type="number" name="stokSept" class="form-control <?= ($validation->hasError('stokSept')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Stok  September..." value="<?= $penjualan['barang_stokSept'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('stokSept') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="mb-2">Terjual September</label>
+                                                <input type="number" name="terjualSept" class="form-control <?= ($validation->hasError('terjualSept')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan jumlah Terjual September..." value="<?= $penjualan['barang_terjualSept'] ?>">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('terjualSept') ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3 text-primary">
                         <div class="box box-primary">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label class="form-label" for="nik">NIK</label>
-                                    <input type="number" class="form-control <?= ($validation->hasError('nik')) ? 'is-invalid' : ''; ?>" name="nik" id="nik" value="<?= $alumni['alumni_nik'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nik') ?>
-                                    </div>
+                                    <label class="mb-2">Jenis</label>
+                                    <select class="form-control <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" name="jenis">
+                                        <option value="">- Pilih Jenis Barang -</option>
+                                        <?php foreach ($jenis as $j) { ?>
+                                            <option <?php if ($penjualan['barang_jenis'] == $j['jenis_id']) {
+                                                        echo "selected='selected' ";
+                                                    } ?> value="<?= $j['jenis_id'] ?>"><?= $j['jenis_nama'] ?></option>
+                                            <div class=" invalid-feedback">
+                                                <?= $validation->getError('jenis') ?>
+                                            </div>
+                                        <?php } ?>
+                                    </select>
+
                                 </div>
 
-                                <div class="form-group mt-4">
-                                    <label class="form-label">Tempat Lahir</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('t_lahir')) ? 'is-invalid' : ''; ?>" name="t_lahir" id="t_lahir" value="<?= $alumni['alumni_t_lahir'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('t_lahir') ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="kabupaten">Kabupaten / Kota</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('kabupaten')) ? 'is-invalid' : ''; ?>" name="kabupaten" id="kabupaten" value="<?= $alumni['alumni_kab'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('kabupaten') ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" name="email" id="email" value="<?= $alumni['alumni_email'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('email') ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label" for="no">No Hp</label>
-                                    <input type="number" class="form-control <?= ($validation->hasError('no')) ? 'is-invalid' : ''; ?>" name="no" id="no" value="<?= $alumni['alumni_no'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('no') ?>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="box box-primary">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="form-label" for="nama">Nama</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" name="nama" id="nama" value="<?= $alumni['alumni_nama'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nama') ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label">Tanggal Lahir</label>
-                                    <input type="date" class="form-control <?= ($validation->hasError('tgl_lahir')) ? 'is-invalid' : ''; ?>" name="tgl_lahir" id="tgl_lahir" value="<?= $alumni['alumni_tgl_lahir'] ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tgl_lahir') ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-4">
-                                    <label class="form-label">Tahun Lulus</label>
-                                    <select class="form-select" name="tahun">
-                                        <option selected>-- Lulusan Tahun --</option>
-                                        <?php foreach ($tahun as $t) { ?>
-                                            <option <?php if ($t['tahun_id'] == $alumni['alumni_tahun_lulus']) {
+                                <div class="form-group mt-4 mb-4">
+                                    <label class="mb-2">Satuan</label>
+                                    <select class="form-control <?= ($validation->hasError('satuan')) ? 'is-invalid' : ''; ?>" name="satuan">
+                                        <option value="">- Pilih Satuan Barang -</option>
+                                        <?php foreach ($satuan as $s) { ?>
+                                            <option <?php if ($penjualan['barang_satuan'] == $s['satuan_id']) {
                                                         echo "selected='selected'";
-                                                    } ?> value="<?php echo $t['tahun_id'] ?>"><?php echo $t['tahun_nama'] ?></option>
+                                                    } ?> value="<?= $s['satuan_id'] ?>"><?= $s['satuan_nama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="form-group mt-4">
-                                    <label class="form-label">Jenis Kelamin</label>
-                                    <select class="form-select" name="jk">
-                                        <option selected>-- Pilih Jenis Kelamin --</option>
-                                        <option <?php if ($alumni['alumni_jk'] == 'L') {
-                                                    echo "selected='selected'";
-                                                } ?> value="L">Laki - Laki</option>
-                                        <option <?php if ($alumni['alumni_jk'] == 'P') {
-                                                    echo "selected='selected'";
-                                                } ?> value="p">Perempuan</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mt-4">
-                                    <label class="form-label">Foto</label>
 
-                                    <input type="file" name="foto">
+                                <button type="submit" class="btn btn-primary mt-4">Update Data</button>
 
-                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary mt-3">Ubah Data</button>
             </form>
         </div>
     </div>

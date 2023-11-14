@@ -4,6 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+$db = \Config\Database::connect();
+
 class PenjualanModel extends Model
 {
     protected $table = 'tb_barang';
@@ -16,42 +18,38 @@ class PenjualanModel extends Model
         'barang_nama',
         'barang_jenis',
         'barang_satuan',
-        'barang_stok19',
-        'barang_terjual19',
-        'barang_stok20',
-        'barang_terjual20',
-        'barang_stok21',
-        'barang_terjual21',
+        'barang_stokApril',
+        'barang_terjualApril',
+        'barang_stokMei',
+        'barang_terjualMei',
+        'barang_stokJuni',
+        'barang_terjualJuni',
+        'barang_stokJuli',
+        'barang_terjualJuli',
+        'barang_stokAgus',
+        'barang_terjualAgus',
+        'barang_stokSept',
+        'barang_terjualSept',
         'barang_cluster'
     ];
 
-    // public function getAlumni($data = false)
-    // {
-    //     if ($data == false) {
-    //         return $this->findAll();
-    //     }
-
-    //     // return $this->where(['alumni_nisn' => $data])->first();
-    // }
-
-    // public function getAlumniID($data = false)
-    // {
-    //     return $this->where(['alumni_id' => $data])->first();
-    // }
-    public function get_data()
+    public function get_data($data = false)
     {
-        return $this->findAll();
+        if ($data == false) {
+
+            return $this->findAll();
+        }
+        return $this->where(['barang_id' => $data])->first();
     }
     public function JumlahData()
     {
         return $this->countAll();
     }
-
-    public function customQuery()
+    public function query($query)
     {
-        $builder = $this->builder();
-        $query = $builder->get();
-        dd($query);
+
+        $db = db_connect();
+        return $db->query($query);
     }
 }
 
