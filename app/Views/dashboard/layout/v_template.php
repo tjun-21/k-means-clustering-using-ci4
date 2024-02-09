@@ -43,14 +43,14 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
+                        <!-- <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">UI COMPONENTS</span>
-                        </li>
+                        </li> -->
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/penjualan" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-users"></i>
+                                    <i class="ti ti-article"></i>
                                 </span>
                                 <span class="hide-menu">PENJUALAN</span>
                             </a>
@@ -58,7 +58,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/satuan" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-article"></i>
+                                    <i class="ti ti-file"></i>
                                 </span>
                                 <span class="hide-menu">SATUAN</span>
                             </a>
@@ -72,7 +72,15 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/dashboard/ubah_password" aria-expanded="false">
+                            <a class="sidebar-link" href="/centroid" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-typography"></i>
+                                </span>
+                                <span class="hide-menu">Centroid</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/ubah_password" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-key"></i>
                                 </span>
@@ -80,65 +88,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                            <a class="sidebar-link" href="/dashboard/logout" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-login"></i>
                                 </span>
                                 <span class="hide-menu">Logout</span>
                             </a>
                         </li>
-                        <!-- <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-typography"></i>
-                                </span>
-                                <span class="hide-menu">Typography</span>
-                            </a>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">AUTH</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Register</span>
-                            </a>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">EXTRA</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-mood-happy"></i>
-                                </span>
-                                <span class="hide-menu">Icons</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-aperture"></i>
-                                </span>
-                                <span class="hide-menu">Sample Page</span>
-                            </a>
-                        </li> -->
                     </ul>
-                    <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-                        <div class="d-flex">
-                            <div class="unlimited-access-title me-3">
-                                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-                                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
-                            </div>
-                            <div class="unlimited-access-img">
-                                <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div> -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -168,24 +125,16 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <a href="#" target="_blank" class="btn btn-primary">Administrator</a>
+                            <a href="#" target="_blank" class="btn btn-primary"><?= session()->get('username') ?> - (<i><?= session()->get('role') ?></i>)</a>
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                                    <img src="/img/user/<?= session()->get('foto') ?>" alt="" width="35" height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <a href="/profil" class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">Profile</p>
-                                        </a>
-                                        <!-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-mail fs-6"></i>
-                                            <p class="mb-0 fs-3">My Account</p>
-                                        </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-list-check fs-6"></i>
-                                            <p class="mb-0 fs-3">My Task</p> -->
                                         </a>
                                         <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
@@ -213,6 +162,43 @@
     <script src="<?= base_url() ?>/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="<?= base_url() ?>/assets/libs/simplebar/dist/simplebar.js"></script>
     <script src="<?= base_url() ?>/assets/js/dashboard.js"></script>
+
+    <?php
+    if ($title == 'K-Means | Dashboard') { ?>
+        <!-- chart js  -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: [
+                        <?php foreach ($graph as $j) {
+                            echo "'" . $j['jenis_nama'] . "',";
+                        } ?>
+                    ],
+                    datasets: [{
+                        label: 'Jumlah Barang Berdasarkan Jenis',
+                        data: [<?php foreach ($graph as $j) {
+                                    echo "'" . $j['the_count'] . "',";
+                                } ?>],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    <?php }
+    ?>
+
 
     <!-- datatables -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

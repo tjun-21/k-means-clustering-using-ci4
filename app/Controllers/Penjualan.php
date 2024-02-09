@@ -8,6 +8,7 @@ use App\Models\PenjualanModel;
 use App\Models\JenisModel;
 use App\Models\SatuanModel;
 use App\Models\CentroidModel;
+use App\Models\PerhitunganModel;
 // use App\Models\TahunModel;
 use Config\App;
 
@@ -17,6 +18,7 @@ class Penjualan extends BaseController
     protected $jenisModel;
     protected $satuanModel;
     protected $centroidModel;
+    protected $perhitunganModel;
     protected $db;
     // protected $tahunModel;
     public function __construct()
@@ -26,7 +28,9 @@ class Penjualan extends BaseController
         $this->jenisModel = new JenisModel();
         $this->satuanModel = new SatuanModel();
         $this->centroidModel = new CentroidModel();
+        $this->perhitunganModel = new PerhitunganModel();
         // $this->tahunModel = new TahunModel();
+
     }
 
     public function clustering()
@@ -34,7 +38,7 @@ class Penjualan extends BaseController
         $data = $this->penjualanModel->get_data();
         $banyak = $this->penjualanModel->JumlahData();
         for ($i = 0; $i < $banyak; $i++) {
-            $clusterawal[$i] = "1";
+            $clusterawal[$i] = "NULL";
         }
 
         // centroid dari database 
@@ -47,9 +51,6 @@ class Penjualan extends BaseController
             );
             $ci++;
         }
-
-
-
         // centroid manual 
         // $centro1[0] = array('120', '118', '125', '121', '130', '126', '135', '129', '135', '132', '135', '128');
         // $centro2[0] = array('90', '74', '95', '85', '100', '74', '105', '88', '110', '71', '87', '68');
@@ -88,13 +89,7 @@ class Penjualan extends BaseController
                 if ($hasilc1 < $hasilc2 && $hasilc1 < $hasilc3) {
                     $clusterakhir[$x] = 'C1';
                     $cluster = 'C1';
-                    // $where = array(
-                    //     'penjualan_id' => $k->penjualan_id
-                    // );
 
-                    // $data = array(
-                    //     'cluster' => $cluster
-                    // );
                     $this->penjualanModel->save([
                         'barang_id' => $k['barang_id'],
                         'barang_cluster' => $cluster
@@ -330,6 +325,20 @@ class Penjualan extends BaseController
                 $clusterawal = $clusterakhir;
             }
         }
+        // add history perhitungan 
+        $c1 = $db->query("SELECT * FROM tb_barang where barang_cluster='C1' ")->getNumRows();
+        $c2 = $db->query("SELECT * FROM tb_barang where barang_cluster='C2' ")->getNumRows();
+        $c3 = $db->query("SELECT * FROM tb_barang where barang_cluster='C3' ")->getNumRows();
+        $jum_dat = $db->query("SELECT * FROM tb_barang")->getNumRows();
+
+
+        $this->perhitunganModel->save([
+            'perhitungan_tgl' => date("Y-m-d"),
+            'hasil_c1' => $c1,
+            'hasil_c2' => $c2,
+            'hasil_c3' => $c3,
+            'jumlah_data' => $jum_dat
+        ]);
 
         // tampilkan hasil perhitungan 
         $cluster1 = $this->centroidModel->query("SELECT * FROM tb_barang as b,tb_jenis as j,tb_satuan as s WHERE b.barang_jenis=j.jenis_id and b.barang_satuan=s.satuan_id and barang_cluster='C1' ")->getResult('array');
@@ -356,26 +365,6 @@ class Penjualan extends BaseController
         return view('dashboard/pages/v_hasil', $data);
     }
 
-    private function hasil_perhitungan_metode($hasil, $loop, $centro1, $centro2, $centro3)
-    {
-        // $data['tampil'] = $this->db->query("SELECT * FROM penjualan,tb_centroid where penjualan = penjualan_id order by centroid_id asc")->result();
-
-        // $data['cluster1'] = $this->centroidModel->query("SELECT * FROM tb_barang as b,tb_jenis as j,tb_satuan as s WHERE b.barang_jenis=j.jenis_id and b.barang_satuan=s.satuan_id and barang_cluster='C1' ")->getResult('array');
-        // $data['cluster2'] = $this->centroidModel->query("SELECT * FROM tb_barang as b,tb_jenis as j,tb_satuan as s WHERE b.barang_jenis=j.jenis_id and b.barang_satuan=s.satuan_id and barang_cluster='C2'")->getResult('array');
-        // $data['cluster3'] = $this->centroidModel->query("SELECT * FROM tb_barang as b,tb_jenis as j,tb_satuan as s WHERE b.barang_jenis=j.jenis_id and b.barang_satuan=s.satuan_id and barang_cluster='C3'' ")->getResult('array');
-
-
-        // // $data['kategorii'] = $this->m_data->get_data('tb_jkategori_barang')->result();
-        // // // $data['graphh'] = $this->db->query("SELECT penjualan.cluster, COUNT(*) AS the_count FROM penjualan GROUP BY cluster order by the_count asc")->result();
-        // // $data['penjualan'] = $this->db->query("SELECT * FROM penjualan,tb_jkategori_barang,tb_merk_barang, tb_jenis_barang WHERE barang_kat=kategori_id and barang_merk=merk_id and barang_jenis=jenis_id")->result();
-        // $data['loop'] = $loop;
-        // $data['hasil'] = $hasil;
-        // $data['centro1'] = $centro1;
-        // $data['centro2'] = $centro2;
-        // $data['centro3'] = $centro3;
-
-    }
-
     public function index()
     {
         $myQuery = 'SELECT * FROM tb_barang as b, tb_satuan as s, tb_jenis as j where b.barang_satuan = s.satuan_id and b.barang_jenis=j.jenis_id';
@@ -388,22 +377,6 @@ class Penjualan extends BaseController
         return view('dashboard/pages/v_penjualan', $data);
     }
 
-    // public function detail($nisn)
-    // {
-    //     $data = [
-    //         'title' => 'SMPN5 | Alumni',
-    //         'sub_title' => "Data Alumni",
-    //         'alumni' => $this->alumniModel->getAlumni($nisn)
-    //     ];
-
-    //     if (empty($data['alumni'])) {
-    //         throw new \CodeIgniter\Exceptions\PageNotFoundException("Data Alumni dengan NISN " . $nisn . ' tidak ditemukan');
-    //     }
-    //     // $alumni = $this->alumniModel->getAlumni($data);
-    //     // dd($data);
-    //     return view('dashboard/pages/v_detail', $data);
-    // }
-
     public function edit($data)
     {
         $data = [
@@ -414,15 +387,6 @@ class Penjualan extends BaseController
             'jenis' => $this->jenisModel->getJenis(),
             'satuan' => $this->satuanModel->getSatuan()
         ];
-        // echo view('layouts/v_header', $data);
-        // return view('dashboard/pages/v_penjualan', $data);
-        // $data = [
-        //     'title' => 'SMPN5 | Alumni',
-        //     'sub_title' => "Alumni Edit",
-        //     'validation' => \Config\Services::validation(),
-        //     'alumni' => $this->alumniModel->getAlumni($data),
-        //     'tahun' => $this->tahunModel->getTahun()
-        // ];
         return view('dashboard/pages/v_edit', $data);
     }
 

@@ -14,8 +14,8 @@ class CentroidModel extends Model
     protected $dateFormat    = 'datetime';
     protected $allowedFields = [
         'centroid_id',
-        'satuan_nama',
-        'barang_id'
+        'centroid_nama',
+        'c_barang_id'
     ];
 
     public function getData($data = false)

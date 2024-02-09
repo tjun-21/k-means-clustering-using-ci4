@@ -50,7 +50,7 @@
                                 if ($i < 1) {
                                     for ($c = 1; $c <= 3; $c++) { ?>
                                         <tr class="">
-                                            <td class="">Centroid</td>
+                                            <td class="">Centroid <?= $c ?></td>
                                             <?php
                                             for ($j = 0; $j < 12; $j++) {
                                                 if ($c == 1) { ?>
@@ -71,7 +71,7 @@
                                     <?php
                                     for ($c = 1; $c <= 3; $c++) { ?>
                                         <tr class="">
-                                            <td class="">Centroid</td>
+                                            <td class="">Centroid <?= $c ?></td>
                                             <?php
                                             for ($j = 0; $j < 12; $j++) {
                                                 if ($c == 1) { ?>
